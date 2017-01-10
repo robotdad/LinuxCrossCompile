@@ -25,7 +25,9 @@ Note under Linker you also need to override the default linker value so the cros
 
 Now, under Build Events, Post-Build Event we are going to copy the x64 build output to the ARM build output directory for use in debugging. An example command line for this is:
 
-```copy "$(ProjectDir)bin\$(Platform)\$(Configuration)\CrossCompileProject.out" "$(ProjectDir)bin\ARM\$(Configuration)\CrossCompileProject.out"```
+```
+copy "$(ProjectDir)bin\$(Platform)\$(Configuration)\CrossCompileProject.out" "$(ProjectDir)bin\ARM\$(Configuration)\CrossCompileProject.out"
+```
 
 ![Project properties picture](images/CrossCompileProjectPostBuild.PNG "")
 
@@ -35,13 +37,17 @@ We can't copy this output to an ARM Linux machine as part of this build as the p
 
 Under Build Events, Pre-Build Event we have set Additional Files to copy to take the cross compile output from the x64 project and copy it to our remote ARM Linux target:
 
-```..\CrossCompileProject\bin\ARM\Debug\CrossCompileProject.out:=/home/pi/projects/CrossCompileProject/bin/ARM/Debug/CrossCompileProject.out```
+```
+..\CrossCompileProject\bin\ARM\Debug\CrossCompileProject.out:=/home/pi/projects/CrossCompileProject/bin/ARM/Debug/CrossCompileProject.out
+```
 
 ![Project properties picture](images/CopyFilesProjectProperitesPreBuild.PNG "")
 
 We have also specified a Remote Post-Build Event to execute a command on the remote Linux target to ensure our output is executable.
 
-```chmod 777 /home/pi/projects/CrossCompileProject/bin/ARM/Debug/CrossCompileProject.out```
+```
+chmod 777 /home/pi/projects/CrossCompileProject/bin/ARM/Debug/CrossCompileProject.out
+```
 
 ![Project properties picture](images/CopyFilesProjectProperitesRemotePostBuild.PNG "")
 
