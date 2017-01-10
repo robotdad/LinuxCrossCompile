@@ -7,6 +7,7 @@ This solution is organized such that there is a project used for building and de
 ![Project properties picture](images/SolutionProperties.PNG "")
 
 Next in Configuration Manager we have set for Debug x64 that CopyFiles is to build for ARM and CrossCompileProject builds for x64.
+
 ![Project properties picture](images/ConfigurationManager.PNG "")
 
 For the CrossCompileProject project properties under General the Remote Build Machine is set to our x64 Linux enviornment with cross compilers installed. Here I am using localhost to connect to my local WSL enviornment.
